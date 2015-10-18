@@ -5,28 +5,38 @@ class ReportController extends Controller {
     public function index() {
         echo "no hacking";
     }
+    /**
+     * 查询报告
+     * @access public
+     * @param string $_GET['md5']
+     * @return void
+     */
     public function search() {
+    	//通过查询查询报告
     	$md5 = I('get.md5');
     	$model = M('file');
     	$condition['md5'] = $md5;
     	$info = $model->where($condition)->find();
-        if($info == NULL || $info['status'] != 2) {
-        	$r['ret'] = 1;
-        	$r['msg'] = '未找到该记录.';
-        	$r['data'] = U('Index/index');
-
-    		$this->AjaxReturn($r);
-    	} else {
+    	$r['msg'] = '提示信息';
+    	$r['ret'] = 1;
+        if($info == NULL) {
+        	$r['data'] = '对不起，未找到该记录。';
+    	}else if($info['status'] != 2) {
+        	$r['data'] = '您的报告还未生成，请稍后再查询。';
+        }else {
     		$r['ret'] = 2;
     		$r['msg'] = 'ok';
     		$r['data'] = U('Report/show?md5='.$md5);
-    		$this->AjaxReturn($r);
     	}
+    	$this->AjaxReturn($r);
     }
+    /**
+     * 审计报告输出
+     * @access public
+     * @param string $_GET['md5']
+     * @return void
+     */
     public function show() {
-    	//输出审计报告
-    	
-    	//APK基本信息查询
     	$md5 = I('get.md5');
     	$model = M('file');
     	$condition['md5'] = $md5;
@@ -40,6 +50,9 @@ class ReportController extends Controller {
     	if($info['status'] != 2) {
     		die("The Application hasn't Done. Please waiting for few minutes.");
     	}
+    	
+
+    	
     	//转换测试时间
     	$info = array_merge($info, timeConvert($info['totaltime']));  
     	$this->assign('info',$info);// 赋值数据集
@@ -47,7 +60,14 @@ class ReportController extends Controller {
     	$file_id = $info['id'];
     	$risk = M('Risk');
     	$analysis = M('Analysis');
+    	//查询漏洞个数
+    	unset($conn);
+    	$conn['fileid'] = $info['id'];
+    	$conn['verdict'] = 2;
+    	$riskCount = $analysis->where($conn)->count();
+    	$this->assign('riskNumber',$riskCount);
     	//查询安全漏洞与风险评估结果
+    	unset($conn);
     	$conn['assessid'] = 2;
     	$conn['ischeck'] = 1;
     	$vulInfo = $risk->where($conn)->order('risklevel desc')->select();

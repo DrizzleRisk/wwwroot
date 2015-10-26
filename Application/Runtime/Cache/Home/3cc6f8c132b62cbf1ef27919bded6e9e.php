@@ -165,6 +165,12 @@
 			<td>审计耗时</td>
 			<td><?php echo ($info["h"]); ?>小时<?php echo ($info["m"]); ?>分钟<?php echo ($info["s"]); ?>秒</td>
 		</tr>
+		<tr>
+			<td>审计日志</td>
+			<td><a href="<?php echo U('Report/log','md5='.$info["md5"]);?>">日志查看</a>&nbsp|
+				<a href="<?php echo U('File/index','md5='.$info["md5"]);?>">目录浏览</a>
+			</td>
+		</tr>
 	</tbody>
 </table>
 <div class="separate">&nbsp;</div><table class="tb-comm">
@@ -281,14 +287,16 @@
 		<tr><td colspan="2" ><img class="icon" src="/Public/img/ico_screen_shot.png">&nbsp;运行截图</td></tr>
 	</thead>
 	<tbody class="">
-	<tr>
-	          <?php if(is_array($picture)): $i = 0; $__LIST__ = $picture;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$picid): $mod = ($i % 2 );++$i;?><td><a href="<?php echo ($picid); ?>"><img src="<?php echo ($picid); ?>" width="236" height="304"></a></td><?php endforeach; endif; else: echo "" ;endif; ?>
-	</tr>
+	<?php if(is_array($picture)): $i = 0; $__LIST__ = $picture;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$picid): $mod = ($i % 2 );++$i;?><tr>
+	          
+            <td><a href="<?php echo ($picid); ?>"><img src="<?php echo ($picid); ?>" width="236" height="304"></a></td>
+            <td><a href="<?php echo ($picid); ?>"><img src="<?php echo ($picid); ?>" width="236" height="304"></a></td>
+	</tr><?php endforeach; endif; else: echo "" ;endif; ?>
 	</tbody>
 </table>
 <div class="separate">&nbsp;</div><div class="separate">&nbsp;</div>
 				<div class="separate">&nbsp;</div>
 				<table class="tb-footer">
-<tr><td align="center" style="font-size:14px">  初来乍到，还有许多地方需要完善，有任何BUG和建议请随时联系我们：99U:143804  </td></tr>
+<tr><td align="center" style="font-size:14px">  初来乍到，还有许多地方需要完善，有任何BUG和建议请随时联系我们：99U:328713,143804</td></tr>
 					<tr><td align="center" style="">    Powered By NDST.App安全审计平台</td></tr>
 				</table></td></tr></table></body></html>

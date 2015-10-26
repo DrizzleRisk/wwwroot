@@ -1,5 +1,19 @@
 <?php
 /**
+ * 私有路劲安全转化
+ *  Controller中使用方法：$this->controller->filter_dir($fileName)
+ * @param string $fileName
+ * @return string
+ */
+ function filter_dir($fileName) {
+	$tmpname = strtolower($fileName);
+	$temp = array(':/',"\0", "..");
+	if (str_replace($temp, '', $tmpname) !== $tmpname) {
+		return false;
+	}
+	return $fileName;
+}
+/**
  * 邮件发送函数
  * @access public
  * @param 邮箱地址,邮件主题,邮件内容

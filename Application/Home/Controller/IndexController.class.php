@@ -101,7 +101,7 @@ class IndexController extends Controller {
 	public function upload() {
 		
 		$upload = new \Think\Upload (); // 实例化上传类
-		$upload->maxSize = 52428800; // 设置附件上传大小50MB
+		$upload->maxSize = 104857600; // 设置附件上传大小50MB
 		$upload->exts = array (
 				'apk',
 				'zip' 
@@ -127,7 +127,7 @@ class IndexController extends Controller {
 		} else {
 			// 上传成功 获取上传文件信息
 			$model = M('file');
-			
+
 			//检查文件MD5,如果存在就删除已上传的文件
 			$con['md5'] = $info['md5'];
 			$rst = $model->where($con)->find();

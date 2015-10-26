@@ -1,5 +1,7 @@
 #
 Uploads/
+Admin/Runtime/
+Application/Runtime/
 .externalToolBuilders/
 .buildpath
 .project

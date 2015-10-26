@@ -5,6 +5,9 @@ class ReportController extends Controller {
     public function index() {
         echo "no hacking";
     }
+    public function file() {
+        $this->display();
+    }
     /**
      * 查询报告
      * @access public

@@ -20,7 +20,7 @@ return array(
     'MAIL_ISHTML'	=>	TRUE, // 是否HTML格式邮件
     
 	//网站配置
-	'SITE_DOMAIN'	=>	'apk.nsaadp.com',
+	'SITE_DOMAIN'	=>	'apk.nsaadp.com:8088',
 	'ADMIN_MAIL'	=>	'382106212@qq.com',
 	'DEFAULT_THEME'	=>	'tencent',
 );

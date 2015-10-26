@@ -59,7 +59,7 @@ hr{
     display:block;
     overflow:hidden;
 }
-#footer p{margin:0 auto;clear:both;width:1000px;text-align:center;line-height:21px;color:#ffffff;font-size:12px;}
+#footer p{margin:0 auto;clear:both;width:875px;text-align:center;line-height:21px;color:#ffffff;font-size:12px;}
 #footer p a{margin:0 7px;}
 #footer a{color:#ffffff;font-size:12px;}
 #footer a:hover{color: #0000ff;text-decoration:underline;}

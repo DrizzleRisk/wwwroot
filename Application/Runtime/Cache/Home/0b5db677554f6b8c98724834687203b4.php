@@ -226,7 +226,7 @@
 </div>
 <div id="content" class="row">
     <img src="/Public/images/func-jg-1.png">
-    <img src="/Public/images/func-jg-2.png">
+    <!--<img src="/Public/images/func-jg-2.png">-->
     <img src="/Public/images/func-jg-3.png">
 </div>
 
@@ -251,12 +251,12 @@
         	|<a href="http://hr.nd.com.cn/" target="_blank">加入我们</a>
         	|<a href="#" target="_self">报告漏洞</a>
         	|<a href="http://www.nd.com.cn/about/our-partners.shtml">合作伙伴</a>
-        	|<a href="#" target="_blank">QAST</a>
+        	|<a href="#" target="_blank">NDST</a>
         </p>
         <p>
             Copyright &copy; 1999 - 2015 NetDragon Websoft Inc. All Rights Reserved
         </p>
-        <p>网络公司 版权所有</p>
+        <p>System Designer & Developer by tr</p>
     </div>
 </div>
 </div>

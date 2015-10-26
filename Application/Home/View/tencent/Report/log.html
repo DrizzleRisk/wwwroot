@@ -1,0 +1,115 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">    
+<title>NDST.APP安全审计报告(审计日志)</title>
+</head>
+<style type="text/css">
+  body{font-family:"微软雅黑",tahoma; margin:0 auto; padding: 0; text-align:center; background-color:#F4F4F4;}
+  a{color:#3888E2;text-decoration: none;}
+  .left{text-align: left;}
+  .separate-head{margin: 0;padding: 0;height:2px;}
+  .separate{margin: 0;padding: 0;height:10px;}
+  .tb-main{width:880px;text-align:center; margin:0 auto;padding:0; border:1px solid #E4E4E4;border-collapse: collapse;background-color:#FFF;}
+  /*.tb-main td{padding:26px 39px;}*/
+
+  .tb-header,.tb-footer{width: 880px;margin:0 auto;border:0; border-collapse:collapse;text-align:left;}
+  .tb-header td,.tb-footer td{background-color:##FFFFFF;color:##F43C58;}
+  .tb-header td{height:82px;font-size:28px;}
+  .tb-footer td{height:28px;font-size:16px;padding-right:10px;}
+    .abc{width:30px;height:20px;font-size:14px;}
+
+  .tb-comm{margin:0px 40px;width:800px; border:none; border-collapse: collapse; text-align:left;}
+  .tb-comm tr,.tb-comm td {height:36px;line-height:36px; vertical-align: middle; border-bottom:1px dashed #E6E6E6;color:#2A2A2A;}
+  .tb-comm thead td{padding:0 0 0 13px;border-bottom:1px solid #E6E6E6;font-size: 20px}
+  .tb-comm td{padding:0 0 0 39px;font-size:14px;}
+  .tb-hole-detail td{padding: 0 0 0 32px;}
+  .tb-comm .td-first{width:86px}
+  .tb-comm .td-first-2{width:518px}
+  .tb-comm .no-border{border: none;}
+  .tb-comm .icon{margin-right:0px;}
+
+  .font-level-1,.font-level-2,.font-level-3,.font-level-4,.font-level-5{width:8px;height:8px;margin-right: 2px;display: inline-block;}
+  .font-level-1{background-color:#8CDC1E;width:8px;height:8px;}
+  .font-level-2{background-color:#56ACE2;width:8px;height:8px;}
+  .font-level-3{background-color:#FFC600;}
+  .font-level-4{background-color:#FD681F;}
+  .font-level-5{background-color:#DC1E1E;}
+  .font-holenum{color:#F50909;font-size:16px;font-weight:bold;}
+  .font-risknum{color:#FF8A00;font-size:16px;font-weight:bold;}
+  .font-judge{height:22px;width: 30px;color:#FFF;font-size:13px;background-color:#FF8A00;}
+
+  .font-high-level td{color:#F50909;}
+  .font-middle-level td{color:#FF8A00;}
+  .font-high-tips{color:#C36666;}
+
+  .font-sortnum{color:#3888E2;font-size:30px;font-weight:bold;}
+  .font-safe{color:#FFF;background-color:#419945;padding:1px 5px;}
+  .font-danger{color:#FFF;background-color:#FF8A00;padding:2px 5px;}
+  
+  .collapse-show{display:none;}
+  .collapse-show td{padding-left:61px;}
+  .collapse{background:url(__PUBLIC__/img/ico_collapse.png) no-repeat 8px 8px;}
+  .expand{background:url(__PUBLIC__/img/ico_expand.png) no-repeat 8px 8px;}
+
+  .expand-title{font-weight:bold;}
+  .expand-title,.expand-content{float:left;}
+  .expand-content{margin-left:0px;max-width:665px;}
+  .collapse-show div{}
+
+</style>
+<script src="__PUBLIC__/js/jquery.js" type="text/javascript"></script>
+<script type="text/javascript">
+  $(document).ready(function() {    
+    $(".td-collapse").click(function(event) {     
+      /* Act on the event */
+
+      var $this = $(this);
+      var $showHtml = $this.parent().next();
+      if($this.hasClass('collapse'))
+      {
+        $this.removeClass('collapse');
+        $this.addClass('expand');
+        $showHtml.show();
+      }
+      else
+      {
+        $this.removeClass('expand');
+        $this.addClass('collapse');
+        $showHtml.hide();
+      }
+                  
+    });
+  });
+</script>
+<body lang="ZH-CN" link="blue" vlink="purple">
+  <table class="tb-main" style=";">
+    <tr><td style="">
+    <table class="tb-header">
+      <tr>
+      <td style="border-radius:3px 3px 0 0; padding-left:39px;padding-top:9px;" width="35px">
+        <img class="icon"   src="__PUBLIC__/img/newlogo.jpg">&nbsp;</td>
+        <td style="border-radius:3px 3px 0 0; vertical-align:middle;">
+          NDST.App安全审计报告(审计日志)
+        </td>
+      </tr>
+    </table>
+    <p class="separate-head">&nbsp;</p>
+<div class="separate">&nbsp;</div><table class="tb-comm">
+  <thead>
+    <tr><td colspan="2" ><img class="icon" src="__PUBLIC__/img/ico_scan_con.png">&nbsp;日志信息</td></tr>
+  </thead>
+  <tbody class="">
+  <tr>
+  <td>
+    {$outputs}
+    </td>
+  </tr>
+  </tbody>
+</table>
+<div class="separate">&nbsp;</div><div class="separate">&nbsp;</div>
+        <div class="separate">&nbsp;</div>
+        <table class="tb-footer">
+<tr><td align="center" style="font-size:14px">  初来乍到，还有许多地方需要完善，有任何BUG和建议请随时联系我们：99U:328713,143804  </td></tr>
+          <tr><td align="center" style="">    Powered By NDST.App安全审计平台</td></tr>
+        </table></td></tr></table></body></html>

@@ -1,0 +1,202 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<!-- Basic Page Needs
+	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+	<meta charset="utf-8">
+	<title>应用分析目录浏览</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<!-- Mobile Specific Metas
+	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- FONT
+	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+	<!--<link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'> -->
+
+	<!-- CSS
+	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+	<link rel="stylesheet" href="__PUBLIC__/jqueryfiletree/css/skeleton.min.css">
+	<link rel="stylesheet" href="__PUBLIC__/jqueryfiletree/dist/jQueryFileTree.min.css">
+	<link rel="stylesheet" href="__PUBLIC__/jqueryfiletree/css/jqft-test.css">
+	<link rel="stylesheet" href="__PUBLIC__/jqueryfiletree/css/atelier-cave.light.min.css">
+
+	<!-- Favicon
+	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+	<link rel="icon" type="image/png" href="images/favicon.png" />
+
+</head>
+
+<body>
+	<!-- Primary Page Layout
+	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+	<div class="container">
+		<div class="row">
+			<div class="twelve columns offset-by-one">
+				<h4>目录说明</h4>
+				<p>这是系统对APK文件静态分析生成的各种目录文件，对于各个目录文件的说明，请看最下方：</p>
+			</div>
+		</div>
+
+
+		<!-- BASIC FILE TREE -->
+		<div class="row" id="basic-file-tree">
+			<div class="ten columns filetree-block offset-by-one">
+				<div class="filetree-basic"></div>
+				<div class="filetree-multiFolder-off"></div>
+			</div>
+			<div class="ten columns info-block">
+				<div>
+					<pre><code class="javascript" id='code'>
+					点击文件显示在这里
+					</code></pre>
+					<div class="blurb selected-file"></div>
+				</div>
+			</div>
+		</div>
+		<!-- bottom -->
+		<!-- 目录说明 -->
+		<div class="row">
+		<div class="ten columns offset-by-one">
+			<table class="u-full-width">
+			  <thead>
+			    <tr>
+			      <th>目录/文件</th>
+			      <th>说明</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr>
+			      <td>apkExtractPath</td>
+			      <td>对apk文件解压目录</td>
+			    </tr>
+			    <tr>
+			      <td>apkExtractPath/classes_dex2jar.jar</td>
+			      <td>使用dex2jar工具反编译classes.dex文件后生成的文件</td>
+			    </tr>
+			    <tr>
+			      <td>jarExtractDir</td>
+			      <td>对apkExtractPath/classes_dex2jar.jar文件进行解压的生成目录</td>
+			    </tr>
+			    <tr>
+			      <td>jadDestDir</td>
+			      <td>对jarExtractDir目录中的.class文件进行反编译生成java的文件目录</td>
+			    </tr>
+			    <tr>
+			      <td>ApktoolDir</td>
+			      <td>使用Apktool工具对apk文件反编译后的生成目录</td>
+			    </tr>
+			    <tr>
+			      <td>图片文件</td>
+			      <td>调用apk应用暴露Activity组件进行截图</td>
+			    </tr>
+			  </tbody>
+			</table>
+			</div>
+		</div>
+		<div class="row">
+			<div class="twelve columns">
+				<a href="#" class="top u-pull-right">Back to Top</a>
+			</div>
+		</div>
+
+	</div>
+
+	<!-- JS
+	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+	<script src="__PUBLIC__/jqueryfiletree/js/jquery.min.js"></script>
+	<script src="__PUBLIC__/jqueryfiletree/js/highlight.min.js"></script>
+	<script src="__PUBLIC__/jqueryfiletree/js/jquery.easing.min.js"></script>
+	<script src="__PUBLIC__/jqueryfiletree/dist/jQueryFileTree.min.js"></script>
+	<script type="text/javascript">
+		function show(r) {
+			if(r.ret == 1) {
+				window.open(r.data);
+			} else if(r.ret == 2) {
+				$("#code").html(r.data);
+			} else {
+				alert(r.data);
+			}
+		  	
+		}
+		hljs.initHighlightingOnLoad();
+		$(document).ready(function() {
+
+            var script = '{:U('File/connect','md5='.$md5)}';
+            //var script = '/Public/jqueryfiletree/dist/connectors/jqueryFileTree.php';
+			$('.filetree-basic').fileTree({
+				script: script,
+				 expandSpeed: 1000,
+            collapseSpeed: 1000,
+			}, function(file) {
+				//console.log(file);
+				// do something with file
+				$.ajax({
+					  type: 'post',
+					  url: '{:U('File/show','md5='.$md5)}',
+					  data: { file: file},
+					  success: show,
+					  dataType: 'json'
+					});
+				console.log( $('a[rel="'+file+'"]').text() );
+				$('.selected-file').text( $('.filetree-basic a[rel="'+file+'"]').text() );
+			});
+
+			$('.filetree-events')
+				.fileTree({
+				   script: script,
+				})
+				.on('filetreeexpanded filetreecollapsed filetreeclicked', function(e, data) {
+					if( $('.events-log div').length >= 5 )
+						$('.events-log div:nth(0)').slideUp('slow', function(){
+							$(this).remove();
+							$('.events-log').append( '<div>'+data.value+' '+e.type.replace('filetree','')+'</div>');
+						});
+					else {
+						$('.events-log').append( '<div>'+data.value+' '+e.type.replace('filetree','')+'</div>');
+					}
+				});
+
+			// when the screen is small, move the filetree elements to the bottom of their containers for better readability
+			$(window).on('load resize', function(event){
+				// screen is smaller than 550px, move info-block up so the heading is on top of filetree-block
+				// -> ONLY IF THE filetree-block IS ALREADY ON TOP
+				if( $(this).width() <= '550' && $('.filetree-block:first').index() === 0 )
+					moveUp();
+				// screen is larger than 550, move info back down the node tree, if
+				// -> ONLY IF filetree-block IS NOT ON TOP
+				else if( $(this).width() > '550' && $('.filetree-block:first').index() != 0 )
+					moveDown(); // move info block back down if screen resolution has enlarged
+			});
+
+			function moveUp() {
+				console.log('move up');
+
+				$('.info-block').map(function(){
+					$(this).after( $(this).parent().find('.filetree-block') );
+				});
+			}
+
+			function moveDown() {
+				console.log('move down');
+
+				$('.info-block').map(function(){
+					$(this).before( $(this).parent().find('.filetree-block') );
+				});
+			}
+
+			$('a.top').click(function() {
+				$('html, body').animate({ scrollTop: 0 }, 700, 'easeOutExpo');
+				return false;
+			});
+		});
+	</script>
+
+	<!-- End Document
+	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>

@@ -108,23 +108,11 @@
 					<tr>
 						<td class="td-first">威胁等级</td>
 						<td class="left">
-							<?php if($riskNumber > 10): ?><img class="icon" src="/Public/img/danger_level_5.png">&nbsp;
-								<img class="icon" src="/Public/img/danger_level_5.png">&nbsp;
-								<img class="icon" src="/Public/img/danger_level_5.png">&nbsp;
-								<img class="icon" src="/Public/img/danger_level_5.png">&nbsp;
-								<img class="icon" src="/Public/img/danger_level_1.png">&nbsp;
+							<?php if($riskNumber > 10): ?><font color=red>高</font>
 							<?php elseif($riskNumber > 5): ?>
-								<img class="icon" src="/Public/img/danger_level_5.png">&nbsp;
-								<img class="icon" src="/Public/img/danger_level_5.png">&nbsp;
-								<img class="icon" src="/Public/img/danger_level_3.png">&nbsp;
-								<img class="icon" src="/Public/img/danger_level_2.png">&nbsp;
-								<img class="icon" src="/Public/img/danger_level_1.png">&nbsp;
+							<font color=orange>中</font>
 							<?php else: ?>
-								<img class="icon" src="/Public/img/danger_level_5.png">&nbsp;
-								<img class="icon" src="/Public/img/danger_level_5.png">&nbsp;
-								<img class="icon" src="/Public/img/danger_level_1.png">&nbsp;
-								<img class="icon" src="/Public/img/danger_level_1.png">&nbsp;
-								<img class="icon" src="/Public/img/danger_level_1.png">&nbsp;<?php endif; ?>
+							<font color=green>低</font><?php endif; ?>
 						</td>										
 					</tr>
 					<tr><td>漏洞概述</td>
@@ -165,12 +153,6 @@
 			<td>审计耗时</td>
 			<td><?php echo ($info["h"]); ?>小时<?php echo ($info["m"]); ?>分钟<?php echo ($info["s"]); ?>秒</td>
 		</tr>
-		<tr>
-			<td>审计日志</td>
-			<td><a href="<?php echo U('Report/log','md5='.$info["md5"]);?>">日志查看</a>&nbsp|
-				<a href="<?php echo U('File/index','md5='.$info["md5"]);?>">目录浏览</a>
-			</td>
-		</tr>
 	</tbody>
 </table>
 <div class="separate">&nbsp;</div><table class="tb-comm">
@@ -199,7 +181,7 @@
 				</div>
 				<div style="clear:both;">
 					<div class="expand-title">详细内容：</div>
-					<div class="expand-content"><?php echo ($vulid["result"]); ?></div>
+					<div class="expand-content"><font color=red><?php echo ($vulid["result"]); ?></font></div>
 				</div>
 				<div style="clear:both;">
 					<div class="expand-title">修复建议：</div>
@@ -212,7 +194,7 @@
 <div class="separate">&nbsp;</div>
 <table class="tb-comm">
 	<thead>
-		<tr><td colspan="2" ><img class="icon" src="/Public/img/ico_danger_detail.png">&nbsp;Drozer工具审计</td></tr>
+		<tr><td colspan="2" ><img class="icon" src="/Public/img/ico_danger_detail.png">&nbsp;组件安全审计</td></tr>
 	</thead>
 	<tbody class="">
 			<?php if(is_array($risk)): $i = 0; $__LIST__ = $risk;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$riskid): $mod = ($i % 2 );++$i;?><tr>
@@ -236,7 +218,7 @@
 				</div>
 				<div style="clear:both;">
 					<div class="expand-title">详细内容：</div>
-					<div class="expand-content"><?php echo ($riskid["result"]); ?></div>
+					<div class="expand-content"><font color=red><?php echo ($riskid["result"]); ?></font></div>
 				</div>
 				<div style="clear:both;">
 					<div class="expand-title">修复建议：</div>
@@ -272,7 +254,7 @@
 				</div>
 				<div style="clear:both;">
 					<div class="expand-title">详细内容：</div>
-					<div class="expand-content"><?php echo ($tipsid["result"]); ?></div>
+					<div class="expand-content"><font color=red><?php echo ($tipsid["result"]); ?></font></div>
 				</div>
 				<div style="clear:both;">
 					<div class="expand-title">修复建议：</div>
@@ -283,20 +265,5 @@
 	</tbody>
 </table>
 <div class="separate">&nbsp;</div><table class="tb-comm">
-	<thead>
-		<tr><td colspan="2" ><img class="icon" src="/Public/img/ico_screen_shot.png">&nbsp;运行截图</td></tr>
-	</thead>
-	<tbody class="">
-	<?php if(is_array($picture)): $i = 0; $__LIST__ = $picture;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$picid): $mod = ($i % 2 );++$i;?><tr>
-	          
-            <td><a href="<?php echo ($picid); ?>"><img src="<?php echo ($picid); ?>" width="236" height="304"></a></td>
-            <td><a href="<?php echo ($picid); ?>"><img src="<?php echo ($picid); ?>" width="236" height="304"></a></td>
-	</tr><?php endforeach; endif; else: echo "" ;endif; ?>
-	</tbody>
-</table>
 <div class="separate">&nbsp;</div><div class="separate">&nbsp;</div>
-				<div class="separate">&nbsp;</div>
-				<table class="tb-footer">
-<tr><td align="center" style="font-size:14px">  初来乍到，还有许多地方需要完善，有任何BUG和建议请随时联系我们：99U:328713,143804</td></tr>
-					<tr><td align="center" style="">    Powered By NDST.App安全审计平台</td></tr>
-				</table></td></tr></table></body></html>
+</td></tr></table></body></html>

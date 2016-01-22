@@ -138,7 +138,7 @@ class ReportController extends Controller {
     	$picPath = dirname($picPath).'/'.$md5;
     	$picList = getDirPicture($picPath);
     	$this->assign('picture', $picList);
-    	
+    	//$this->assign('empty','<span class="empty">没有数据</span>');
     	$this->display ();
     }
     public function log() {

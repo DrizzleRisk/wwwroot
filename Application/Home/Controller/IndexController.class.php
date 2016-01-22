@@ -110,13 +110,13 @@ class IndexController extends Controller {
 		// 上传单个文件
 		
 		//令牌有问题，待解决
-		if(!checkToken($_POST)) {
+		/*if(!checkToken($_POST)) {
 			//表单token验证失败
 			$r['ret'] = 1;
 			$r['msg'] = '上传失败';
 			$r['data'] = '表单令牌失效！请刷新网页再次进行上传作业。';
 			$this->ajaxReturn($r);
-		}
+		}*/
 		$info = $upload->uploadOne( $_FILES ['apkFile'] );
 		if (! $info) {
 			// 上传错误提示错误信息
@@ -162,7 +162,7 @@ class IndexController extends Controller {
 			if( $model->add($data) ) {
 				$r['ret'] = $data['md5'];
 				$r['msg'] = '上传成功';
-				$r['data'] = '提交成功，预计需要30分钟左右完成安全分析';
+				$r['data'] = '提交成功，预计需要30分钟左右完成安全分析, 您可以使用MD5('.$data['md5'].')查询报告.';
 				$this->ajaxReturn($r);
 			}
 			

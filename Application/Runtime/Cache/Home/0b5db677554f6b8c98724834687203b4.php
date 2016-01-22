@@ -200,6 +200,48 @@
     </script>
 </head>
 <body>
+<!-- 导航条
+<div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="./index.html">NDST安全平台</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="">
+                <a href="/">首页</a>
+              </li>
+              <li class="active">
+                <a href="<?php echo U('/Home/Statistics/');?>">统计</a>
+              </li>
+              <li class="">
+                <a href="<?php echo U('/Home/Help/');?>">FAQ</a>
+              </li>
+              <li class="">
+                <a href="./base-css.html">基本CSS样式</a>
+              </li>
+              <li class="">
+                <a href="./components.html">组件</a>
+              </li>
+              <li class="">
+                <a href="./javascript.html">JavaScript插件</a>
+              </li>
+              <li class="">
+                <a href="./customize.html">定制</a>
+              </li>
+              <li>
+                <a href="http://expo.bootcss.com" target="_blank">网站实例</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+ -->
 <!--[if lte IE 7]>
 <div style="line-height:24px;width: 100%;padding: 10px;font-size: 20px;text-align: right;color: red;position: absolute;top: 0;left: 0" id="ietips" onclick="document.getElementById('ietips').style.display='none';">
     目前你使用的是低版本的IE浏览器内核，可能无法正常享受我们提供的服务！<br>请更换高版本浏览器，谢谢！点击隐藏提示！

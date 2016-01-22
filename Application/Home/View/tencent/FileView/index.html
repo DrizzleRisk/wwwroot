@@ -1,0 +1,35 @@
+<include file="Public:header" />
+
+<script type="text/javascript" src="__PUBLIC__/syntaxhighlighter/scripts/shCore.js"></script>
+<script type="text/javascript" src="__PUBLIC__/syntaxhighlighter/scripts/{$tpl.jsFileName}"></script>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/syntaxhighlighter/styles/shCoreDefault.css"/>
+<script type="text/javascript">SyntaxHighlighter.all();</script>
+</head>
+
+<body >
+  <div class="wrapper">
+
+<div class="container" style="padding:40px 0">
+
+  <div class="clearfix">
+    <div class="margin-top-2">
+      <a href="/">
+        <img src="__PUBLIC__/img/newlogo.jpg" alt="">
+      </a>
+    </div>
+  </div>
+
+  <div class="page-header">
+    <h1>文件浏览
+    </h1>
+  </div>
+  	<h2>{$tpl.fileName}</h2>
+	<pre class="brush: {$tpl.fileType};">
+	{$tpl.fileContent}
+	</pre>
+</div>
+
+
+
+    <div class="push"></div>
+  </div>

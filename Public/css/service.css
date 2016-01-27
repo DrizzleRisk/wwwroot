@@ -3,7 +3,7 @@ body{
     line-height: 18px;
     word-wrap:break-word;word-break:break-all;
     font-family: "微软雅黑",monospace,sans-serif;
-    background: white url(/Public/images/header_bg.jpg) 0 0 repeat-x;
+    /*background: white url(/Public/images/header_bg.jpg) 0 0 repeat-x;*/
 }
 #header{
     height: 87px;
@@ -67,9 +67,10 @@ hr{
 .navbar .nav > li > a,
 .navbar .nav > li > a:focus,
 .navbar .nav > li > a:hover{
-    color: white;
+    color: black;
     text-shadow: none;
     font-size: 16px;
+
 }
 .navbar .nav > li > a:focus,
 .navbar .nav li.dropdown.open > .dropdown-toggle,

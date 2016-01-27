@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ND安全 - 分析数据统计</title>
+    <!--[if lte IE 6]></base><![endif]-->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" >
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="__PUBLIC__/css/bootstrap.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/css/bootstrap-responsive.min.css" />
+    <link rel="stylesheet" href="__PUBLIC__/css/font-awesome.css" />
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap-ie6.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/ie.css">
+    <![endif]-->
+    <script type="text/javascript" src="__PUBLIC__/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/bootstrap.js"></script>
+    <script src="__PUBLIC__/js/echarts.min.js"></script>
+    <!--[if lte IE 8]>
+    <script type="text/javascript" src="__PUBLIC__/js/bootstrap-ie.js"></script>
+    <script src="__PUBLIC__/js/html5.js"></script>
+    <script src="__PUBLIC__/js/json3.min.js"></script>
+    <script src="__PUBLIC__/js/es5-shim.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="__PUBLIC__/css/service.css">
+</head>
+<body>
+
+<div id="content" class="container">
+    <include file="Public:navbar" />
+    <!-- 为 ECharts 准备一个具备大小（宽高）的Dom      -->
+<h2>Android APP 漏洞检出数量统计</h2>
+    <div id="vulCount" style="width: 100%;height:600px;">
+        <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        $.ajax({
+            type: "post",
+            url: "/index.php/Home/Statistics/vulCount",
+            dataType: 'json',
+            success: function (result) {
+                if(result) {
+                    risk_name_list = []
+                    risk_count_list = []
+                    safe_count_list = []
+                    unkown_count_list = []
+                    for(i in result.ec_data) {
+                        var r = result.ec_data[i];
+                        risk_name_list.push(r.riskname);
+                        risk_count_list.push(Number(r.count_risk));
+                        safe_count_list.push(Number(r.count_safe));
+                        unkown_count_list.push(Number(result.chk_all) - Number(r.count_risk) - Number(r.count_safe))
+                    }
+                    var myChart = echarts.init(document.getElementById('vulCount'));
+
+                    // 指定图表的配置项和数据
+                    var option = {
+                        color: ["#FF0033", "#33CC33", "#FFCC00"],
+                        title: {
+                            subtext: "数据来源：NDST安全平台"
+                        },
+                        tooltip : {
+                            trigger: 'axis',
+                            axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                                type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                            }
+                        },
+                        legend: {
+                            data:['存在风险', '安全', '未检测']
+                        },
+                        toolbox: {
+                            show : true,
+                            feature : {
+                                mark : {show: true},
+                                dataView : {show: true, readOnly: false},
+                                magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                                restore : {show: true},
+                                saveAsImage : {show: true}
+                            }
+                        },
+                        grid: {
+                            left: '3%',
+                            right: '4%',
+                            bottom: '3%',
+                            containLabel: true
+                        },
+                        xAxis : [
+                            {
+                                type : 'value'
+                            }
+                        ],
+                        yAxis : [
+                            {
+                                type : 'category',
+                                data : risk_name_list
+                            }
+                        ],
+                        series : [
+                            {
+                                name:'存在风险',
+                                type:'bar',
+                                stack: '总量',
+                                itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                                data:risk_count_list
+                            },
+                            {
+                                name:'安全',
+                                type:'bar',
+                                stack: '总量',
+                                itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                                data:safe_count_list
+                            },
+                            {
+                                name:'未检测',
+                                type:'bar',
+                                stack: '总量',
+                                itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+                                data:unkown_count_list
+                            }
+                        ]
+                    };
+                    myChart.setOption(option);
+                }
+            }
+
+        }
+            )
+
+        // 使用刚指定的配置项和数据显示图表。
+
+        
+    </script>
+    </div>
+
+</div>
+<include file="Public:footer" />
+</div>
+</body>
+</html>

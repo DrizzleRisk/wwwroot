@@ -1,40 +1,24 @@
-<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar">
       <div class="navbar-inner">
-        <div class="container">
-          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="brand" href="./index.html">NDST安全平台</a>
-          <div class="nav-collapse collapse">
+          <a class="brand" href="/">NDST安全平台</a>
             <ul class="nav">
-              <li class="">
+              <li class="active">
                 <a href="/">首页</a>
               </li>
-              <li class="active">
-                <a href="{:U('/Home/Statistics/')}">统计</a>
+              <li class="">
+                <a href="{:U('/Home/Statistics/all')}">全局统计</a>
+            </li>
+              <li class="">
+                <a href="{:U('/Home/Statistics/test')}">快测平台统计</a>
               </li>
+              <li class="">
+                <a href="{:U('/Home/Statistics/k12')}">K12实验室统计</a>
+              </li>
+              <!--
               <li class="">
                 <a href="{:U('/Home/Help/')}">FAQ</a>
               </li>
-              <li class="">
-                <a href="./base-css.html">基本CSS样式</a>
-              </li>
-              <li class="">
-                <a href="./components.html">组件</a>
-              </li>
-              <li class="">
-                <a href="./javascript.html">JavaScript插件</a>
-              </li>
-              <li class="">
-                <a href="./customize.html">定制</a>
-              </li>
-              <li>
-                <a href="http://expo.bootcss.com" target="_blank">网站实例</a>
-              </li>
+            -->
             </ul>
-          </div>
-        </div>
       </div>
     </div>
